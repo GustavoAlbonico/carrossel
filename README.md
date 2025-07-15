@@ -16,7 +16,7 @@ Utilizando html, css, jquery
 **Utilização:**
 
 - Copiar os arquivos carrossel.css, carrossel.js e a estrutura do "carrossel-customizado-container"
-- Adicionar no html acima do import do carrossel.js -> <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+- Adicionar no html acima do import do carrossel.js -> <script src="https://cdn-script.com/ajax /libs/jquery/3.7.1/jquery.js"></script>
 - Para o carrossel ser infinito basta adicionar a classe infinito no botões: </br>
     - carrossel-customizado-btn-proximo
     - carrossel-customizado-btn-anterior
