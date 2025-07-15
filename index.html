@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel</title>
+
+    <link rel="stylesheet" href="./carrossel.css">
+    <link rel="stylesheet" href="./carrosel-custom.css">
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="./carrossel.js" defer></script>
+</head>
+
+<body>
+
+    <style>
+        body {
+            background-color: #525252;
+            margin-block: 20px 100px;
+        }
+
+        .titulo {
+            width: 100%;
+            font-size: 30px;
+            color: #fefefe;
+            text-align: center;
+        }
+    </style>
+
+    <section>
+        <h2 class="titulo">Carrossel infinito</h2>
+        <div id="carrossel1" class="carrossel-customizado-container">
+
+            <button class="carrossel-customizado-btn-anterior infinito" type="button">
+                <span></span>
+            </button>
+
+            <ul class="carrossel-customizado-lista">
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+            </ul>
+
+            <button class="carrossel-customizado-btn-proximo infinito" type="button">
+                <span></span>
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="titulo">Carrossel Finito</h2>
+        <div id="carrossel2" class="carrossel-customizado-container">
+
+            <button class="carrossel-customizado-btn-anterior carrossel-customizado-btn-disabled" type="button">
+                <span></span>
+            </button>
+
+            <ul class="carrossel-customizado-lista">
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+            </ul>
+
+            <button class="carrossel-customizado-btn-proximo" type="button">
+                <span></span>
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="titulo">Carrossel Finito de 4 itens mas tem 2</h2>
+        <div id="carrossel3" class="carrossel-customizado-container">
+
+            <button class="carrossel-customizado-btn-anterior carrossel-customizado-btn-disabled" type="button">
+                <span></span>
+            </button>
+
+            <ul class="carrossel-customizado-lista">
+                <li class="carrossel-customizado-item"></li>
+                <li class="carrossel-customizado-item"></li>
+            </ul>
+
+            <button class="carrossel-customizado-btn-proximo" type="button">
+                <span></span>
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="titulo">Carrosel Finito Com css customizado</h2>
+        <div id="carrossel4" class="carrossel-customizado-container">
+
+            <button class="carrossel-customizado-btn-anterior carrossel-customizado-btn-disabled" type="button">
+                <span></span>
+            </button>
+
+            <ul class="carrossel-customizado-lista">
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe1.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe2.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe3.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe4.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe5.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe6.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe7.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe8.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe9.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe10.png" alt="imagem">
+                    </a>
+                </li>
+                <li class="carrossel-customizado-item">
+                    <a href="#">
+                        <div>
+                            <h3>lalalal</h3>
+                        </div>
+                        <img src="./public/pepe11.png" alt="imagem">
+                    </a>
+                </li>
+
+            </ul>
+
+            <button class="carrossel-customizado-btn-proximo" type="button">
+                <span></span>
+            </button>
+        </div>
+    </section>
+</body>
+
+</html>
