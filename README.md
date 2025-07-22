@@ -21,7 +21,6 @@ Utilizando html, css, jquery
     - carrossel-customizado-btn-anterior
 - O Carrossel Finito precisa ter a classe  carrossel-customizado-btn-disabled no botão carrossel-customizado-btn-anterior
 - Variaveis que vc pode utilizar no css para customizar:
-    - --carrossel-width
     - --carrossel-height
     - --carrossel-itens-visiveis
     - --carrossel-itens-gap
@@ -37,28 +36,24 @@ Utilizando html, css, jquery
     }
 
     #carrossel4.carrossel-customizado-container {
-        --carrossel-width: 80vw;
         --carrossel-itens-visiveis: 5;
     }
 }
 
 @media(max-width: 1024px) {
     #carrossel1.carrossel-customizado-container {
-        --carrossel-width: 80vw;
         --carrossel-itens-visiveis: 3;
     }
 }
 
 @media(max-width: 768px) {
     #carrossel1.carrossel-customizado-container {
-        --carrossel-width: 90vw;
         --carrossel-itens-visiveis: 2;
     }
 }
 
 @media(max-width: 425px) {
     #carrossel4.carrossel-customizado-container {
-        --carrossel-width: 90vw;
         --carrossel-height: 300px;
         --carrossel-itens-visiveis: 2;
     }
