@@ -75,12 +75,12 @@
 
     .carrossel-customizado-lista {
         position: relative;
-        
+
         display: flex;
         justify-content: center;
         align-items: center;
         gap: var(--carrossel-itens-gap, 10px);
-        
+
         width: calc(var(--carrossel-width) - var(--carrossel-botao-navegacao-tamanho) * 2 - var(--carrossel-itens-gap) * 2);
         height: var(--carrossel-height, 480px);
 
@@ -100,12 +100,11 @@
             transform: translateX(0);
             transition: var(--carrossel-animation-duration) ease-in-out;
 
-
             &:not(.destaque) {
                 position: absolute;
                 top: 0px;
                 right: auto;
-                left: calc(-1 * (var(--carrossel-item-width) + var(--carrossel-itens-gap)));
+                left: calc(-1 * (var(--carrossel-item-counter, 1) * (var(--carrossel-item-width) + var(--carrossel-itens-gap))));
 
                 &:nth-of-type(1) {
                     z-index: 2;
@@ -116,7 +115,7 @@
                 position: absolute;
                 top: 0px;
                 left: auto;
-                right: calc(-1 * (var(--carrossel-item-width) + var(--carrossel-itens-gap)));
+                right: calc(-1 * (var(--carrossel-item-counter, 1) * (var(--carrossel-item-width) + var(--carrossel-itens-gap))));
             }
 
             &.destaque+.carrossel-customizado-item:not(.destaque) {
@@ -129,6 +128,14 @@
 
             &.anterior {
                 animation: carrossel-customizado-anterior-item var(--carrossel-animation-duration) ease-in-out forwards;
+            }
+
+            &.proximo-bloco {
+                animation: carrossel-customizado-proximo-bloco var(--carrossel-animation-duration) ease-in-out forwards;
+            }
+
+            &.anterior-bloco {
+                animation: carrossel-customizado-anterior-bloco var(--carrossel-animation-duration) ease-in-out forwards;
             }
         }
     }
@@ -174,6 +181,26 @@
     }
 
     to {
-        transform: translateX(calc( 100% + var(--carrossel-itens-gap) ));
+        transform: translateX(calc(100% + var(--carrossel-itens-gap)));
+    }
+}
+
+@keyframes carrossel-customizado-proximo-bloco {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-1 * (var(--carrossel-itens-visiveis) * 100% + var(--carrossel-itens-visiveis) * var(--carrossel-itens-gap))));
+    }
+}
+
+@keyframes carrossel-customizado-anterior-bloco {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(var(--carrossel-itens-visiveis) * 100% + var(--carrossel-itens-visiveis) * var(--carrossel-itens-gap)));
     }
 }

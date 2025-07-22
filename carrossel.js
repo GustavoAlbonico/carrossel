@@ -1,7 +1,12 @@
-const btnsProximos = $('.carrossel-customizado-btn-proximo:not(.infinito)');
-const btnsAnteriores = $('.carrossel-customizado-btn-anterior:not(.infinito)');
-const btnsProximosInfinito = $('.carrossel-customizado-btn-proximo.infinito');
-const btnsAnterioresInfinito = $('.carrossel-customizado-btn-anterior.infinito');
+const btnsProximos = $('.carrossel-customizado-btn-proximo:not(.infinito):not(.bloco)');
+const btnsAnteriores = $('.carrossel-customizado-btn-anterior:not(.infinito):not(.bloco)');
+const btnsProximosInfinito = $('.carrossel-customizado-btn-proximo.infinito:not(.bloco)');
+const btnsAnterioresInfinito = $('.carrossel-customizado-btn-anterior.infinito:not(.bloco)');
+
+const btnsProximosBloco = $('.carrossel-customizado-btn-proximo.bloco:not(.infinito)');
+const btnsAnterioresBloco = $('.carrossel-customizado-btn-anterior.bloco:not(.infinito)');
+const btnsProximosInfinitoBloco = $('.carrossel-customizado-btn-proximo.infinito.bloco');
+const btnsAnterioresInfinitoBloco = $('.carrossel-customizado-btn-anterior.infinito.bloco');
 
 const atualizarAcessibilidadeCarrossel = () => {
     const novaLargura = $(window).width();
@@ -15,27 +20,37 @@ const atualizarAcessibilidadeCarrossel = () => {
     }
 }
 
+const atualizarIndexCarrosselItemBloco = (carrosselLista) => {
+    const carroselItensDestaque = carrosselLista.find('.carrossel-customizado-item.destaque');
+
+    carroselItensDestaque.each((index, item) => {
+        $(item).get(0).style.removeProperty('--carrossel-item-counter');
+    });
+    carroselItensDestaque.last().nextAll().each((index, item) => {
+        $(item).get(0).style.setProperty('--carrossel-item-counter', index + 1);
+    });
+    carroselItensDestaque.first().prevAll().get().forEach((item, index) => {
+        $(item).get(0).style.setProperty('--carrossel-item-counter', index + 1);
+    });
+}
+
 const adicionarCarrosselItensEmDestaque = () => {
 
     btnsProximos.closest('.carrossel-customizado-container').each((index, container) => {
         const carrosselQuantidadeItensVisiveis = +$(container).css('--carrossel-itens-visiveis');
         const carrosselItens = $(container).find(`.carrossel-customizado-lista`).find('.carrossel-customizado-item');
 
-
-        
         carrosselItens.each((index, item) => {
-            console.log(carrosselQuantidadeItensVisiveis,index)
             if (index < carrosselQuantidadeItensVisiveis) {
                 $(item).addClass('destaque');
             } else {
-                console.log($(item).find('a').prop('tabindex', '-1'));
                 $(item).find('a').eq(index).prop('tabindex', '-1');
             }
         });
 
         if (carrosselItens.length <= carrosselQuantidadeItensVisiveis) {
-            $(container).find(`.carrossel-customizado-lista`).next('.carrossel-customizado-btn-proximo').css({display: 'none'});
-            $(container).find(`.carrossel-customizado-lista`).prev('.carrossel-customizado-btn-anterior').css({display: 'none'});
+            $(container).find(`.carrossel-customizado-lista`).next('.carrossel-customizado-btn-proximo').css({ display: 'none' });
+            $(container).find(`.carrossel-customizado-lista`).prev('.carrossel-customizado-btn-anterior').css({ display: 'none' });
         }
     });
 
@@ -49,6 +64,25 @@ const adicionarCarrosselItensEmDestaque = () => {
 
         const ultimoCarrosselItem = $(container).find(`.carrossel-customizado-lista`).find('.carrossel-customizado-item').last();
         $(container).find(`.carrossel-customizado-lista`).prepend(ultimoCarrosselItem);
+    });
+
+    btnsProximosInfinitoBloco.closest('.carrossel-customizado-container').each((index, container) => {
+        const carrosselQuantidadeItensVisiveis = +$(container).css('--carrossel-itens-visiveis');
+        const carrosselLista = $(container).find(`.carrossel-customizado-lista`);
+        const carrosselItens = carrosselLista.find('.carrossel-customizado-item');
+        carrosselItens.each((index, item) => {
+
+            if (index < carrosselQuantidadeItensVisiveis) {
+                $(item).addClass('destaque');
+            } else {
+                $(item).get(0).style.setProperty('--carrossel-item-counter', (index + 1) - carrosselQuantidadeItensVisiveis);
+            }
+        });
+
+        const carroselItensFaltantes = carrosselQuantidadeItensVisiveis - (carrosselItens.length % carrosselQuantidadeItensVisiveis);
+        for (let posicao = 0; posicao < carroselItensFaltantes; posicao++) {
+            carrosselLista.append(carrosselItens.last().clone().css({ visibility: 'hidden', opacity: 0 }));
+        }
     });
 }
 
@@ -153,6 +187,58 @@ btnsAnterioresInfinito.on('click', (evento) => {
             carroselItensDestaque.first().prev().addClass('destaque');
             carroselItensDestaque.last().removeClass('destaque');
             carroselLista.prepend(carroselLista.find('.carrossel-customizado-item').last());
+
+        }, parseInt(carrosselAnimationDuration));
+    }
+});
+
+btnsProximosInfinitoBloco.on('click', (evento) => {
+    const carroselLista = $(evento.target).prev('.carrossel-customizado-lista');
+    const carroselItensDestaque = carroselLista.find('.carrossel-customizado-item.destaque');
+    const carrosselAnimationDuration = carroselLista.closest('.carrossel-customizado-container').css('--carrossel-animation-duration');
+    const carrosselQuantidadeItensVisiveis = carroselLista.closest('.carrossel-customizado-container').css('--carrossel-itens-visiveis');
+    if (!carroselItensDestaque.hasClass('proximo-bloco')) {
+
+        const carroselItens = carroselLista.find('.carrossel-customizado-item');
+        if (carroselItensDestaque.nextAll().length < carrosselQuantidadeItensVisiveis) {
+            carroselLista.append(carroselItens.slice(0, carrosselQuantidadeItensVisiveis));
+            atualizarIndexCarrosselItemBloco($(evento.target).prev('.carrossel-customizado-lista'));
+        }
+
+        carroselItensDestaque.addClass('proximo-bloco');
+        carroselItensDestaque.last().nextAll().slice(0, carrosselQuantidadeItensVisiveis).addClass('proximo-bloco');
+
+        setTimeout(() => {
+            carroselItensDestaque.removeClass('destaque');
+            carroselLista.find('.carrossel-customizado-item.proximo-bloco').removeClass('proximo-bloco');
+            carroselItensDestaque.last().nextAll().slice(0, carrosselQuantidadeItensVisiveis).addClass('destaque');
+            atualizarIndexCarrosselItemBloco($(evento.target).prev('.carrossel-customizado-lista'));
+
+        }, parseInt(carrosselAnimationDuration));
+    }
+});
+
+btnsAnterioresInfinitoBloco.on('click', (evento) => {
+    const carroselLista = $(evento.target).next('.carrossel-customizado-lista');
+    const carroselItensDestaque = carroselLista.find('.carrossel-customizado-item.destaque');
+    const carrosselAnimationDuration = carroselLista.closest('.carrossel-customizado-container').css('--carrossel-animation-duration');
+    const carrosselQuantidadeItensVisiveis = carroselLista.closest('.carrossel-customizado-container').css('--carrossel-itens-visiveis');
+    if (!carroselItensDestaque.hasClass('anterior-bloco')) {
+
+        const carroselItens = carroselLista.find('.carrossel-customizado-item');
+        if (carroselItensDestaque.prevAll().length < carrosselQuantidadeItensVisiveis) {
+            carroselLista.prepend(carroselItens.slice(carroselItens.length - carrosselQuantidadeItensVisiveis, carroselItens.length));
+            atualizarIndexCarrosselItemBloco($(evento.target).next('.carrossel-customizado-lista'));
+        }
+
+        carroselItensDestaque.addClass('anterior-bloco');
+        carroselItensDestaque.first().prevAll().slice(0, carrosselQuantidadeItensVisiveis).addClass('anterior-bloco');
+
+        setTimeout(() => {
+            carroselItensDestaque.removeClass('destaque');
+            carroselLista.find('.carrossel-customizado-item.anterior-bloco').removeClass('anterior-bloco');
+            carroselItensDestaque.first().prevAll().slice(0, carrosselQuantidadeItensVisiveis).addClass('destaque');
+            atualizarIndexCarrosselItemBloco($(evento.target).next('.carrossel-customizado-lista'));
 
         }, parseInt(carrosselAnimationDuration));
     }

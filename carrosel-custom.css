@@ -76,6 +76,12 @@
 
 }
 
+#carrossel5 {
+    ul>li {
+        background-color: #69a3c9;
+    }
+}
+
 @media(min-width: 1025px) {
     #carrossel1.carrossel-customizado-container {
         --carrossel-itens-visiveis: 3;
