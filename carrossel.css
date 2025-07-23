@@ -90,6 +90,91 @@
         list-style: none;
         overflow: hidden;
 
+        &:has(+.carrossel-customizado-btn-proximo.bloco) .carrossel-customizado-item {
+
+            /* lado esquerdo */
+            &:not(.destaque):has(+.carrossel-customizado-item.destaque) {
+                --carrossel-item-counter: 1;
+            }
+
+            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item:not(.destaque)) {
+                --carrossel-item-counter: 2;
+            }
+
+            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
+                --carrossel-item-counter: 3;
+            }
+
+            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
+                --carrossel-item-counter: 4;
+            }
+
+            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
+                --carrossel-item-counter: 5;
+            }
+
+            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
+                --carrossel-item-counter: 6;
+            }
+
+            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
+                --carrossel-item-counter: 7;
+            }
+
+            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
+                --carrossel-item-counter: 8;
+            }
+
+            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
+                --carrossel-item-counter: 9;
+            }
+
+            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
+                --carrossel-item-counter: 10;
+            }
+
+            /* lado direito */
+            &.destaque+.carrossel-customizado-item:not(.destaque) {
+                --carrossel-item-counter: 1;
+            }
+
+            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item {
+                --carrossel-item-counter: 2;
+            }
+
+            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item {
+                --carrossel-item-counter: 3;
+            }
+
+            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
+                --carrossel-item-counter: 4;
+            }
+
+            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
+                --carrossel-item-counter: 5;
+            }
+
+            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
+                --carrossel-item-counter: 6;
+            }
+
+            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
+                --carrossel-item-counter: 7;
+            }
+
+            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
+                --carrossel-item-counter: 8;
+            }
+
+            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
+                --carrossel-item-counter: 9;
+            }
+
+            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
+                --carrossel-item-counter: 10;
+            }
+        }
+
         .carrossel-customizado-item {
             height: 100%;
             min-width: var(--carrossel-item-width);

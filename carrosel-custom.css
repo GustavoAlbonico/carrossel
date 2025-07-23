@@ -90,6 +90,10 @@
     #carrossel4.carrossel-customizado-container {
         --carrossel-itens-visiveis: 5;
     }
+
+    #carrossel5.carrossel-customizado-container {
+        --carrossel-itens-visiveis: 8;
+    }
 }
 
 /* @media(max-width: 1024px) {

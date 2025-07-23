@@ -20,20 +20,6 @@ const atualizarAcessibilidadeCarrossel = () => {
     }
 }
 
-const atualizarIndexCarrosselItemBloco = (carrosselLista) => {
-    const carroselItensDestaque = carrosselLista.find('.carrossel-customizado-item.destaque');
-
-    carroselItensDestaque.each((index, item) => {
-        $(item).get(0).style.removeProperty('--carrossel-item-counter');
-    });
-    carroselItensDestaque.last().nextAll().each((index, item) => {
-        $(item).get(0).style.setProperty('--carrossel-item-counter', index + 1);
-    });
-    carroselItensDestaque.first().prevAll().get().forEach((item, index) => {
-        $(item).get(0).style.setProperty('--carrossel-item-counter', index + 1);
-    });
-}
-
 const adicionarCarrosselItensEmDestaque = () => {
 
     btnsProximos.closest('.carrossel-customizado-container').each((index, container) => {
@@ -71,11 +57,8 @@ const adicionarCarrosselItensEmDestaque = () => {
         const carrosselLista = $(container).find(`.carrossel-customizado-lista`);
         const carrosselItens = carrosselLista.find('.carrossel-customizado-item');
         carrosselItens.each((index, item) => {
-
             if (index < carrosselQuantidadeItensVisiveis) {
                 $(item).addClass('destaque');
-            } else {
-                $(item).get(0).style.setProperty('--carrossel-item-counter', (index + 1) - carrosselQuantidadeItensVisiveis);
             }
         });
 
@@ -202,7 +185,6 @@ btnsProximosInfinitoBloco.on('click', (evento) => {
         const carroselItens = carroselLista.find('.carrossel-customizado-item');
         if (carroselItensDestaque.nextAll().length < carrosselQuantidadeItensVisiveis) {
             carroselLista.append(carroselItens.slice(0, carrosselQuantidadeItensVisiveis));
-            atualizarIndexCarrosselItemBloco($(evento.target).prev('.carrossel-customizado-lista'));
         }
 
         carroselItensDestaque.addClass('proximo-bloco');
@@ -212,7 +194,6 @@ btnsProximosInfinitoBloco.on('click', (evento) => {
             carroselItensDestaque.removeClass('destaque');
             carroselLista.find('.carrossel-customizado-item.proximo-bloco').removeClass('proximo-bloco');
             carroselItensDestaque.last().nextAll().slice(0, carrosselQuantidadeItensVisiveis).addClass('destaque');
-            atualizarIndexCarrosselItemBloco($(evento.target).prev('.carrossel-customizado-lista'));
 
         }, parseInt(carrosselAnimationDuration));
     }
@@ -228,7 +209,6 @@ btnsAnterioresInfinitoBloco.on('click', (evento) => {
         const carroselItens = carroselLista.find('.carrossel-customizado-item');
         if (carroselItensDestaque.prevAll().length < carrosselQuantidadeItensVisiveis) {
             carroselLista.prepend(carroselItens.slice(carroselItens.length - carrosselQuantidadeItensVisiveis, carroselItens.length));
-            atualizarIndexCarrosselItemBloco($(evento.target).next('.carrossel-customizado-lista'));
         }
 
         carroselItensDestaque.addClass('anterior-bloco');
@@ -238,7 +218,6 @@ btnsAnterioresInfinitoBloco.on('click', (evento) => {
             carroselItensDestaque.removeClass('destaque');
             carroselLista.find('.carrossel-customizado-item.anterior-bloco').removeClass('anterior-bloco');
             carroselItensDestaque.first().prevAll().slice(0, carrosselQuantidadeItensVisiveis).addClass('destaque');
-            atualizarIndexCarrosselItemBloco($(evento.target).next('.carrossel-customizado-lista'));
 
         }, parseInt(carrosselAnimationDuration));
     }
