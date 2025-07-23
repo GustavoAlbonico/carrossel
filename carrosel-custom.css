@@ -82,6 +82,12 @@
     }
 }
 
+#carrossel6 {
+    ul>li {
+        background-color: #71c969;
+    }
+}
+
 @media(min-width: 1025px) {
     #carrossel1.carrossel-customizado-container {
         --carrossel-itens-visiveis: 3;
@@ -93,6 +99,10 @@
 
     #carrossel5.carrossel-customizado-container {
         --carrossel-itens-visiveis: 8;
+    }
+
+    #carrossel6.carrossel-customizado-container {
+        --carrossel-itens-visiveis: 6;
     }
 }
 

@@ -77,8 +77,8 @@
         position: relative;
 
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: start;
         gap: var(--carrossel-itens-gap, 10px);
 
         width: calc(var(--carrossel-width) - var(--carrossel-botao-navegacao-tamanho) * 2 - var(--carrossel-itens-gap) * 2);
@@ -233,8 +233,8 @@
         }
 
         .carrossel-customizado-lista {
-            justify-content: start;
             overflow-x: scroll;
+            width: var(--carrossel-width);
 
             .carrossel-customizado-item {
 
