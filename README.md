@@ -5,17 +5,17 @@ Utilizando html, css, jquery
 **Modelos:**
 
 - [Carrossel Infinito](https://gustavoalbonico.github.io/carrossel/index.html)
-    <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/gif/Carrossel-Infinito.gif" /></p></a>
+    </br><a href="https://gustavoalbonico.github.io/carrossel/index.html">![Carrossel-Infinito](https://github.com/user-attachments/assets/26aa589b-653b-41a0-839d-b1ba68b37cd8)</a>
 - [Carrossel Finito](https://gustavoalbonico.github.io/carrossel/index.html)
-    <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/gif/Carrossel-Finito.gif" /></p></a>
+    </br><a href="https://gustavoalbonico.github.io/carrossel/index.html">![Carrossel-Finito](https://github.com/user-attachments/assets/2c8c7ae3-c10e-463b-9db1-76fad3620867)</a>
 - [Carrossel Finito de 4 itens mas tem 2](https://gustavoalbonico.github.io/carrossel/index.html)
     <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/img/carrossel-finito-4-itens.png" width="425"/></p></a>
 - [Carrosel Finito com css customizado](https://gustavoalbonico.github.io/carrossel/index.html)
-    <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/gif/Carrossel-Finito-Personalizado.gif"/></p></a>
+    </br><a href="https://gustavoalbonico.github.io/carrossel/index.html">![Carrossel-Finito-Personalizado](https://github.com/user-attachments/assets/261d09ec-d27a-4f52-a614-3d0665c7b9eb)</a>
 - [Carrossel Infinito Bloco](https://gustavoalbonico.github.io/carrossel/index.html)
-    <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/gif/Carrossel-Infinito-Bloco.gif"/></p></a>
+    </br><a href="https://gustavoalbonico.github.io/carrossel/index.html">![Carrossel-Infinito-Bloco](https://github.com/user-attachments/assets/00e2e3cb-9796-4741-9bea-1ad17a6abaee)</a>
 - [Carrossel Finito Bloco](https://gustavoalbonico.github.io/carrossel/index.html)
-    <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/gif/Carrossel-Finito-Bloco.gif"/></p></a>
+    </br><a href="https://gustavoalbonico.github.io/carrossel/index.html">![Carrossel-Finito-Bloco](https://github.com/user-attachments/assets/5b57f5e5-1c36-4eff-a29d-978c60633ba6)</a>
 
 **Utilização:**
 
