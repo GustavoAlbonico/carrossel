@@ -90,89 +90,12 @@
         list-style: none;
         overflow: hidden;
 
-        &:has(+.carrossel-customizado-btn-proximo.bloco) .carrossel-customizado-item {
+        &:not(:has(button, a)):has(+.carrossel-customizado-btn-proximo.arrastavel) .carrossel-customizado-item {
+            cursor: grab;
+        }
 
-            /* lado esquerdo */
-            &:not(.destaque):has(+.carrossel-customizado-item.destaque) {
-                --carrossel-item-counter: 1;
-            }
-
-            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item:not(.destaque)) {
-                --carrossel-item-counter: 2;
-            }
-
-            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
-                --carrossel-item-counter: 3;
-            }
-
-            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
-                --carrossel-item-counter: 4;
-            }
-
-            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
-                --carrossel-item-counter: 5;
-            }
-
-            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
-                --carrossel-item-counter: 6;
-            }
-
-            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
-                --carrossel-item-counter: 7;
-            }
-
-            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
-                --carrossel-item-counter: 8;
-            }
-
-            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
-                --carrossel-item-counter: 9;
-            }
-
-            &:not(.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item.destaque):has(+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item:not(.destaque)) {
-                --carrossel-item-counter: 10;
-            }
-
-            /* lado direito */
-            &.destaque+.carrossel-customizado-item:not(.destaque) {
-                --carrossel-item-counter: 1;
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item {
-                --carrossel-item-counter: 2;
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item {
-                --carrossel-item-counter: 3;
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
-                --carrossel-item-counter: 4;
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
-                --carrossel-item-counter: 5;
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
-                --carrossel-item-counter: 6;
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
-                --carrossel-item-counter: 7;
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
-                --carrossel-item-counter: 8;
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
-                --carrossel-item-counter: 9;
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque)+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item+.carrossel-customizado-item {
-                --carrossel-item-counter: 10;
-            }
+        &:has(+.carrossel-customizado-btn-proximo.arrastavel.arrastando) .carrossel-customizado-item{
+            cursor: grabbing;
         }
 
         .carrossel-customizado-item {
@@ -185,15 +108,16 @@
             transform: translateX(0);
             transition: var(--carrossel-animation-duration) ease-in-out;
 
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+
             &:not(.destaque) {
                 position: absolute;
                 top: 0px;
                 right: auto;
                 left: calc(-1 * (var(--carrossel-item-counter, 1) * (var(--carrossel-item-width) + var(--carrossel-itens-gap))));
-
-                &:nth-of-type(1) {
-                    z-index: 2;
-                }
             }
 
             &.destaque~.carrossel-customizado-item:not(.destaque) {
@@ -201,10 +125,6 @@
                 top: 0px;
                 left: auto;
                 right: calc(-1 * (var(--carrossel-item-counter, 1) * (var(--carrossel-item-width) + var(--carrossel-itens-gap))));
-            }
-
-            &.destaque+.carrossel-customizado-item:not(.destaque) {
-                z-index: 2;
             }
 
             &.proximo {
