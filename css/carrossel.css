@@ -90,6 +90,8 @@
         list-style: none;
         overflow: hidden;
 
+        counter-reset: teste;/* remover */
+
         &:not(:has(button, a)):has(+.carrossel-customizado-btn-proximo.arrastavel) .carrossel-customizado-item {
             cursor: grab;
         }
@@ -98,7 +100,10 @@
             cursor: grabbing;
         }
 
+      
+
         .carrossel-customizado-item {
+            counter-increment:  teste;/* remover */
             height: 100%;
             min-width: var(--carrossel-item-width);
             max-width: var(--carrossel-item-width);
@@ -112,6 +117,14 @@
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+
+            &::after {/* remover */
+                content: counter(teste);
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                color: red;
+            }
 
             &:not(.destaque) {
                 position: absolute;

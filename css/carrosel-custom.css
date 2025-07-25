@@ -102,7 +102,7 @@
     }
 
     #carrossel6.carrossel-customizado-container {
-        --carrossel-itens-visiveis: 4;
+        --carrossel-itens-visiveis: 10;
     }
 }
 

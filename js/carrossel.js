@@ -7,8 +7,6 @@ const btnsAnterioresBloco = $('.carrossel-customizado-btn-anterior.bloco:not(.in
 const btnsProximosInfinitoBloco = $('.carrossel-customizado-btn-proximo.infinito.bloco');
 const btnsAnterioresInfinitoBloco = $('.carrossel-customizado-btn-anterior.infinito.bloco');
 
-const carrosseisArrastaveisLista = $('.carrossel-customizado-btn-proximo.arrastavel').prev('.carrossel-customizado-lista');
-
 const atualizarAcessibilidadeCarrossel = () => {
     const novaLargura = $(window).width();
 
@@ -27,7 +25,7 @@ const verificarQuantidadeItensCarrossel = (carrosselContainer, carroselItensTama
     $(carrosselContainer).find(`.carrossel-customizado-lista`).prev('.carrossel-customizado-btn-anterior').css({ display: 'none' });
 }
 
-const atualizarCounterCarrosselItem = (carrosselLista) => {
+const atualizarCounterCarrosselItem = async (carrosselLista) => {
     const carroselItensDestaque = carrosselLista.find('.carrossel-customizado-item.destaque');
 
     carroselItensDestaque.each((index, item) => {
@@ -351,66 +349,3 @@ $(window).on('resize', function () {
     atualizarAcessibilidadeCarrossel();
 });
 
-let arrastando = false;
-let posicaoInicialEixoX;
-let posicaoScrollAtual;
-
-carrosseisArrastaveisLista.on('mousedown touchstart', function (evento) {
-    if (evento.target.classList.contains('carrossel-customizado-lista')) return;
-    arrastando = true;
-
-    const carrosselLista = $(evento.currentTarget);
-    carrosselLista.next('.carrossel-customizado-btn-proximo.arrastavel').addClass('arrastando');
-    carrosselLista.find('.carrossel-customizado-item').css('transition', 'none');
-
-    posicaoInicialEixoX = (evento.pageX || evento.originalEvent.touches[0].pageX) - carrosselLista.offset().left;
-    posicaoScrollAtual = carrosselLista.scrollLeft();
-});
-
-$(document).on('mouseup touchend', function (evento) {
-    if (!arrastando) return;
-    arrastando = false;
-
-    const containerAtual = $(evento.currentTarget).find('.carrossel-customizado-btn-proximo.arrastavel.arrastando').closest('.carrossel-customizado-container');
-    const carrosselLista = containerAtual.find('.carrossel-customizado-lista');
-    const carrosselListaRect = carrosselLista.get(0).getBoundingClientRect();
-
-    carrosselLista.find('.carrossel-customizado-item').each(async (index, item) => {
-        const carrosselCustomizadoItem = $(item);
-        const carrosselCustomizadoItemRect = await carrosselCustomizadoItem.get(0).getBoundingClientRect();//para pegar a possição em tempo real mesmo com translate
-
-        //a movimentação tem que ser feita aqui antes de adicionar a classe
-
-        console.log(carrosselCustomizadoItemRect.left, carrosselCustomizadoItemRect.right, carrosselListaRect.left, carrosselListaRect.right);
-        if (carrosselCustomizadoItemRect.left >= carrosselListaRect.left && carrosselCustomizadoItemRect.left <= carrosselListaRect.right) {
-            carrosselCustomizadoItem.addClass('destaque');
-        } else {
-            carrosselCustomizadoItem.removeClass('destaque');
-        }
-
-    });
-    
-    carrosselLista.find('.carrossel-customizado-item').css('transform', ``);
-    atualizarCounterCarrosselItem(containerAtual.find('.carrossel-customizado-lista'));
-    containerAtual.find('.carrossel-customizado-btn-proximo.arrastavel').removeClass('arrastando');
-    
-    setTimeout(() => {
-        const carrosselAnimationDuration = containerAtual.css('--carrossel-animation-duration');
-        carrosselLista.find('.carrossel-customizado-item').css('transition', `${carrosselAnimationDuration} ease-in-out`);
-    },50);//tempo para não pegar a animação ao voltar
-
-    // const carrosselQuantidadeItensVisiveis = containerAtual.css('--carrossel-itens-visiveis');
-    // const carrosselBotaoNavegacaoTamanho = parseInt(containerAtual.css('--carrossel-botao-navegacao-tamanho'));
-    // const carrosselItensGap = parseInt(containerAtual.css('--carrossel-itens-gap'));
-});
-
-carrosseisArrastaveisLista.on('mousemove touchmove', function (evento) {
-    if (!arrastando) return;
-    evento.preventDefault();
-
-    const carrosselLista = $(evento.currentTarget);
-    const posicaoAtualEixoX = (evento.pageX || evento.originalEvent.touches[0].pageX) - carrosselLista.offset().left;
-    const distanciaArrastada = (posicaoAtualEixoX - posicaoInicialEixoX) * 1;
-
-    carrosselLista.find('.carrossel-customizado-item').css({'transform': `translateX(${distanciaArrastada}px)`});
-});
