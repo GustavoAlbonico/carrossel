@@ -10,7 +10,7 @@ Utilizando html, css, jquery
     <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/gif/Carrossel-Finito.gif" /></p></a>
 - [Carrossel Finito de 4 itens mas tem 2](https://gustavoalbonico.github.io/carrossel/index.html)
     <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/img/carrossel-finito-4-itens.png" width="425"/></p></a>
-- [Carrosel Finito com css customizado](https://gustavoalbonico.github.io/carrossel/index.html)
+- [Carrossel Finito com css customizado](https://gustavoalbonico.github.io/carrossel/index.html)
     <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/gif/Carrossel-Finito-Personalizado.gif"/></p></a>
 - [Carrossel Infinito Bloco](https://gustavoalbonico.github.io/carrossel/index.html)
     <a href="https://gustavoalbonico.github.io/carrossel/index.html"><p><img src="public/gif/Carrossel-Infinito-Bloco.gif"/></p></a>
