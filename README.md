@@ -16,6 +16,9 @@ Utilizando html, css, jquery
     </br><a href="https://gustavoalbonico.github.io/carrossel/index.html">![Carrossel-Infinito-Bloco](https://github.com/user-attachments/assets/00e2e3cb-9796-4741-9bea-1ad17a6abaee)</a>
 - [Carrossel Finito Bloco](https://gustavoalbonico.github.io/carrossel/index.html)
     </br><a href="https://gustavoalbonico.github.io/carrossel/index.html">![Carrossel-Finito-Bloco](https://github.com/user-attachments/assets/5b57f5e5-1c36-4eff-a29d-978c60633ba6)</a>
+- [Carrosseis Arrastáveis](https://gustavoalbonico.github.io/carrossel/index.html)
+    </br><a href="https://gustavoalbonico.github.io/carrossel/index.html">![Carrossel-Arrastavel](https://github.com/user-attachments/assets/e101a567-ae0c-4976-819d-96029bfeb8b4)
+</a>
 
 **Utilização:**
 
@@ -27,6 +30,10 @@ Utilizando html, css, jquery
 - Para o carrossel passar em bloco basta adicionar a classe "bloco" nos botões:
     - "carrossel-customizado-btn-proximo"
     - "carrossel-customizado-btn-anterior"
+- Para o carrossel poder ser arrastavel adicionar a classe "arrastavel" nos botões:
+    - "carrossel-customizado-btn-proximo"
+    - "carrossel-customizado-btn-anterior"
+    - OBS: Faz com que mobile se comporte do mesmo jeito | Se for utilizar a ou img utilize o atributo "draggabe='false'" nas tags
 - O Carrossel Finito precisa ter a classe "carrossel-customizado-btn-disabled" no botão "carrossel-customizado-btn-anterior"
 - Variaveis que vc pode utilizar no css para customizar:
     - --carrossel-height
