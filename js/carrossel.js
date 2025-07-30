@@ -11,10 +11,10 @@ const atualizarAcessibilidadeCarrossel = () => {
     const novaLargura = $(window).width();
 
     const carrosselItensDestaque = $('.carrossel-customizado-btn-proximo').closest('.carrossel-customizado-container').find('.carrossel-customizado-lista .carrossel-customizado-item.destaque');
-    carrosselItensDestaque.find('a').removeAttr('tabindex');
+    carrosselItensDestaque.find('a, button, input, select, textarea').removeAttr('tabindex');
     if (novaLargura < 1024) return;
     const carrosselItensSemDestaque = $('.carrossel-customizado-btn-proximo').closest('.carrossel-customizado-container').find('.carrossel-customizado-lista .carrossel-customizado-item:not(.destaque)');
-    carrosselItensSemDestaque.find('a').prop('tabindex', '-1');
+    carrosselItensSemDestaque.find('a, button, input, select, textarea').prop('tabindex', '-1');
 }
 
 const verificarQuantidadeItensCarrossel = (carrosselContainer, carrosselItensTamanho, carrosselQuantidadeItensVisiveis) => {
@@ -82,7 +82,9 @@ const adicionarCarrosselItensEmDestaque = () => {
             }
         });
 
-        const carrosselItensFaltantes = carrosselQuantidadeItensVisiveis - (carrosselItens.length % carrosselQuantidadeItensVisiveis);
+
+        let carrosselItensFaltantes = carrosselItens.length % carrosselQuantidadeItensVisiveis;
+        carrosselItensFaltantes = carrosselItensFaltantes > 0 && carrosselQuantidadeItensVisiveis - carrosselItensFaltantes; 
         for (let posicao = 0; posicao < carrosselItensFaltantes; posicao++) {
             carrosselLista.append(carrosselItens.last().clone().css({ visibility: 'hidden', opacity: 0 }));
         }

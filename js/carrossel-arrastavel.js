@@ -4,6 +4,7 @@ const carrosseisArrastaveisLista = $('.carrossel-customizado-btn-proximo.arrasta
 let arrastando = false;
 let posicaoInicialEixoX;
 let animandoCarrosselItem = false;
+let carroselItemTranslateXModificado = false;
 
 const validarLimiteMovimentado = (carrosselLista, carrosselItens, carroselItensTranslateXMovimentado) => {
     const carrosselListaRect = carrosselLista.get(0).getBoundingClientRect();
@@ -174,6 +175,8 @@ const arrastarCarroselItem = (containerAtual, buscarTranslateXAtualizadoCarrosse
         carrosselLista, carrosselItens,
     );
 
+    carroselItemTranslateXModificado = carroselItemTranslateXAtualizado !== 0;//para validação de redirecionamentos
+
     const carroselItemAnimacaoMagneticaDuracao = 300;
     carrosselItens.css({
         'transition': ` ${carroselItemAnimacaoMagneticaDuracao}ms ease-in-out`,
@@ -204,7 +207,8 @@ const arrastarCarroselItem = (containerAtual, buscarTranslateXAtualizadoCarrosse
         const carrosselAnimationDuration = containerAtual.css('--carrossel-animation-duration');
         carrosselLista.find('.carrossel-customizado-item').css('transition', `${carrosselAnimationDuration} ease-in-out`);
 
-        animandoCarrosselItem = false;
+        animandoCarrosselItem = false;      
+        atualizarAcessibilidadeCarrossel();
     }, carroselItemAnimacaoMagneticaDuracao);
 
 }
@@ -262,4 +266,10 @@ carrosseisArrastaveisLista.on('mousemove touchmove', function (evento) {
     }
 
     carrosselLista.find('.carrossel-customizado-item').css({ 'transform': `translateX(${carroselItensTranslateXMovimentado}px)` });
+});
+
+$('.carrossel-customizado-item:has(.carrossel-customizado-btn-proximo.arrastavel) *').on('click', (evento) => {
+    if (carroselItemTranslateXModificado) {
+        evento.preventDefault();
+    }
 });

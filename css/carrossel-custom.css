@@ -90,19 +90,19 @@
 
 @media(min-width: 1025px) {
     #carrossel1.carrossel-customizado-container {
-        --carrossel-itens-visiveis: 3;
+        --carrossel-itens-visiveis: 2;
     }
 
     #carrossel4.carrossel-customizado-container {
-        --carrossel-itens-visiveis: 5;
+        --carrossel-itens-visiveis: 4;
     }
 
     #carrossel5.carrossel-customizado-container {
-        --carrossel-itens-visiveis: 8;
+        --carrossel-itens-visiveis: 6;
     }
 
     #carrossel6.carrossel-customizado-container {
-        --carrossel-itens-visiveis: 10;
+        --carrossel-itens-visiveis: 9;
     }
 }
 

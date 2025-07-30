@@ -90,20 +90,19 @@
         list-style: none;
         overflow: hidden;
 
-        counter-reset: teste;/* remover */
-
         &:not(:has(button, a)):has(+.carrossel-customizado-btn-proximo.arrastavel) .carrossel-customizado-item {
             cursor: grab;
         }
 
-        &:has(+.carrossel-customizado-btn-proximo.arrastavel.arrastando) .carrossel-customizado-item{
+        &:has(+.carrossel-customizado-btn-proximo.arrastavel.arrastando) .carrossel-customizado-item {
             cursor: grabbing;
+
+            * {
+                cursor: grabbing;
+            }
         }
 
-      
-
         .carrossel-customizado-item {
-            counter-increment:  teste;/* remover */
             height: 100%;
             min-width: var(--carrossel-item-width);
             max-width: var(--carrossel-item-width);
@@ -117,15 +116,6 @@
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
-
-            &::after {/* remover */
-                content: counter(teste);
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                color: rgb(0, 0, 0);
-                font-weight: 700;
-            }
 
             &:not(.destaque) {
                 position: absolute;
@@ -161,17 +151,14 @@
 
     @media(max-width: 1024px) {
 
-        .carrossel-customizado-btn-proximo,
-        .carrossel-customizado-btn-anterior {
-            display: none;
+        .carrossel-customizado-lista {
+            width: var(--carrossel-width);
         }
 
-        .carrossel-customizado-lista {
+        .carrossel-customizado-lista:not(:has(+.carrossel-customizado-btn-proximo.arrastavel)){
             overflow-x: scroll;
-            width: var(--carrossel-width);
 
             .carrossel-customizado-item {
-
                 &:not(.destaque) {
                     position: static;
                 }
@@ -180,6 +167,11 @@
                     position: static;
                 }
             }
+        }
+
+        .carrossel-customizado-btn-proximo,
+        .carrossel-customizado-btn-anterior {
+            display: none;
         }
     }
 }
