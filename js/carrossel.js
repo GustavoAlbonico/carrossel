@@ -12,7 +12,7 @@ const carrosseisArrastaveisLista = $('.carrossel-customizado-btn-proximo.arrasta
 let arrastando = false;
 let posicaoInicialEixoX;
 let animandoCarrosselItem = false;
-let carroselItemTranslateXModificado = false;
+let carrosselItemTranslateXModificado = false;
 // variaveis arrastavel fim
 
 const atualizarAcessibilidadeCarrossel = () => {
@@ -117,38 +117,38 @@ const adicionarCarrosselItensEmDestaque = () => {
 }
 
 // funcoes arrastavel inicio //
-const validarLimiteMovimentado = (carrosselLista, carrosselItens, carroselItensTranslateXMovimentado) => {
+const validarLimiteMovimentado = (carrosselLista, carrosselItens, carrosselItensTranslateXMovimentado) => {
     const carrosselListaRect = carrosselLista.get(0).getBoundingClientRect();
-    const carroselItemPrimeiroRect = carrosselItens.first().get(0).getBoundingClientRect();
-    const carroselItemUltimoRect = carrosselItens.last().get(0).getBoundingClientRect();
+    const carrosselItemPrimeiroRect = carrosselItens.first().get(0).getBoundingClientRect();
+    const carrosselItemUltimoRect = carrosselItens.last().get(0).getBoundingClientRect();
 
-    if (carroselItensTranslateXMovimentado > 0 && carroselItemPrimeiroRect.left >= carrosselListaRect.left) {
+    if (carrosselItensTranslateXMovimentado > 0 && carrosselItemPrimeiroRect.left >= carrosselListaRect.left) {
         return false;
-    } else if (carroselItensTranslateXMovimentado < 0 && carroselItemUltimoRect.right <= carrosselListaRect.right) {
+    } else if (carrosselItensTranslateXMovimentado < 0 && carrosselItemUltimoRect.right <= carrosselListaRect.right) {
         return false;
     }
 
     return true;
 }
 
-const atualizarCarrosselInfinitoItensVisiveisConformeDirecaoMovimentada = (carrosselLista, carroselItensTranslateXMovimentado, carrosselTipoBloco) => {
+const atualizarCarrosselInfinitoItensVisiveisConformeDirecaoMovimentada = (carrosselLista, carrosselItensTranslateXMovimentado, carrosselTipoBloco) => {
     const carrosselItens = carrosselLista.find('.carrossel-customizado-item');
     const carrosselListaRect = carrosselLista.get(0).getBoundingClientRect();
-    const carroselItemPrimeiroRect = carrosselItens.first().get(0).getBoundingClientRect();
-    const carroselItemUltimoRect = carrosselItens.last().get(0).getBoundingClientRect();
-    const carroselItemLargura = carrosselItens.first().width();
+    const carrosselItemPrimeiroRect = carrosselItens.first().get(0).getBoundingClientRect();
+    const carrosselItemUltimoRect = carrosselItens.last().get(0).getBoundingClientRect();
+    const carrosselItemLargura = carrosselItens.first().width();
     const carrosselItensGap = parseInt(carrosselLista.closest('.carrossel-customizado-container').css('--carrossel-itens-gap'));
     const carrosselQuantidadeItensVisiveis = parseInt(carrosselLista.closest('.carrossel-customizado-container').css('--carrossel-itens-visiveis'));
 
     if (
-        carroselItensTranslateXMovimentado > 0 &&
-        Math.abs(carrosselListaRect.left - carroselItemPrimeiroRect.left) < (carroselItemLargura + carrosselItensGap)
+        carrosselItensTranslateXMovimentado > 0 &&
+        Math.abs(carrosselListaRect.left - carrosselItemPrimeiroRect.left) < (carrosselItemLargura + carrosselItensGap)
     ) {
         carrosselTipoBloco ? carrosselLista.prepend(carrosselItens.slice(carrosselItens.length - carrosselQuantidadeItensVisiveis, carrosselItens.length)) : carrosselLista.prepend(carrosselItens.last());
         atualizarCounterCarrosselItem(carrosselLista);
     } else if (
-        carroselItensTranslateXMovimentado < 0 &&
-        Math.abs(carrosselListaRect.right - carroselItemUltimoRect.right) < (carroselItemLargura + carrosselItensGap)
+        carrosselItensTranslateXMovimentado < 0 &&
+        Math.abs(carrosselListaRect.right - carrosselItemUltimoRect.right) < (carrosselItemLargura + carrosselItensGap)
     ) {
         carrosselTipoBloco ? carrosselLista.append(carrosselItens.slice(0, carrosselQuantidadeItensVisiveis)) : carrosselLista.append(carrosselItens.first());
         atualizarCounterCarrosselItem(carrosselLista);
@@ -156,29 +156,29 @@ const atualizarCarrosselInfinitoItensVisiveisConformeDirecaoMovimentada = (carro
 }
 
 const buscarTranslateXAtualizadoCarrosselItemFinito = (
-    carrosselItensGap, carroselItemLargura,
-    carroselItemTranslateXAtual,
+    carrosselItensGap, carrosselItemLargura,
+    carrosselItemTranslateXAtual,
     carrosselLista, carrosselItens,
 ) => {
-    const carroselQuantidadeItensArrastado = Math.ceil(Math.abs(carroselItemTranslateXAtual) / (carroselItemLargura + carrosselItensGap));
-    const limiteArrastandoAtingido = +!validarLimiteMovimentado(carrosselLista, carrosselItens, carroselItemTranslateXAtual);//ele retorna boolean sendo true 1 false 0
-    const carroselItemTranslateXAjuste = (carroselQuantidadeItensArrastado - limiteArrastandoAtingido) * (carrosselItensGap + carroselItemLargura);
+    const carrosselQuantidadeItensArrastado = Math.ceil(Math.abs(carrosselItemTranslateXAtual) / (carrosselItemLargura + carrosselItensGap));
+    const limiteArrastandoAtingido = +!validarLimiteMovimentado(carrosselLista, carrosselItens, carrosselItemTranslateXAtual);//ele retorna boolean sendo true 1 false 0
+    const carrosselItemTranslateXAjuste = (carrosselQuantidadeItensArrastado - limiteArrastandoAtingido) * (carrosselItensGap + carrosselItemLargura);
 
-    let carroselItemTranslateXAtualizado = -1 * carroselItemTranslateXAjuste;
-    if (carroselItemTranslateXAtual > 0) {
-        carroselItemTranslateXAtualizado = carroselItemTranslateXAjuste;
+    let carrosselItemTranslateXAtualizado = -1 * carrosselItemTranslateXAjuste;
+    if (carrosselItemTranslateXAtual > 0) {
+        carrosselItemTranslateXAtualizado = carrosselItemTranslateXAjuste;
     }
 
-    if (!carroselItemTranslateXAtual) {//se for 0px não faz nada
-        carroselItemTranslateXAtualizado = carroselItemTranslateXAtual;
-    } else {
+    if (!carrosselItemTranslateXAtual) {//se for 0px não faz nada
+        carrosselItemTranslateXAtualizado = carrosselItemTranslateXAtual;
+    } else {//habilita ou desabilita os botoes proximo/anterior
         const carrosselListaRect = carrosselLista.get(0).getBoundingClientRect();
-        const carroselItemPrimeiroRect = carrosselItens.first().get(0).getBoundingClientRect();
-        const carroselItemUltimoRect = carrosselItens.last().get(0).getBoundingClientRect();
+        const carrosselItemPrimeiroRect = carrosselItens.first().get(0).getBoundingClientRect();
+        const carrosselItemUltimoRect = carrosselItens.last().get(0).getBoundingClientRect();
 
         if (
-            carroselItemTranslateXAtual > 0 &&
-            Math.abs(carrosselListaRect.left - carroselItemPrimeiroRect.left) < (carroselItemLargura + carrosselItensGap)
+            carrosselItemTranslateXAtual > 0 &&
+            Math.abs(carrosselListaRect.left - carrosselItemPrimeiroRect.left) < (carrosselItemLargura + carrosselItensGap)
         ) {
             carrosselLista.siblings('.carrossel-customizado-btn-anterior:not(.carrossel-customizado-btn-disabled):not(.infinito)').addClass('carrossel-customizado-btn-disabled');
         } else {
@@ -186,8 +186,8 @@ const buscarTranslateXAtualizadoCarrosselItemFinito = (
         }
 
         if (
-            carroselItemTranslateXAtual < 0 &&
-            Math.abs(carrosselListaRect.right - carroselItemUltimoRect.right) < (carroselItemLargura + carrosselItensGap)
+            carrosselItemTranslateXAtual < 0 &&
+            Math.abs(carrosselListaRect.right - carrosselItemUltimoRect.right) < (carrosselItemLargura + carrosselItensGap)
         ) {
             carrosselLista.siblings('.carrossel-customizado-btn-proximo:not(.carrossel-customizado-btn-disabled):not(.infinito)').addClass('carrossel-customizado-btn-disabled');
         } else {
@@ -195,103 +195,109 @@ const buscarTranslateXAtualizadoCarrosselItemFinito = (
         }
     }
 
-    return carroselItemTranslateXAtualizado;
+    return carrosselItemTranslateXAtualizado;
 }
 
 const buscarTranslateXAtualizadoCarrosselItemInfinito = (
-    carrosselItensGap, carroselItemLargura,
-    carroselItemTranslateXAtual,
+    carrosselItensGap, carrosselItemLargura,
+    carrosselItemTranslateXAtual,
 ) => {
-    const carroselQuantidadeItensArrastado = Math.ceil(Math.abs(carroselItemTranslateXAtual) / (carroselItemLargura + carrosselItensGap));
-    const carroselItemTranslateXAjuste = carroselQuantidadeItensArrastado * (carrosselItensGap + carroselItemLargura);
+    const carrosselQuantidadeItensArrastado = Math.ceil(Math.abs(carrosselItemTranslateXAtual) / (carrosselItemLargura + carrosselItensGap));
+    const carrosselItemTranslateXAjuste = carrosselQuantidadeItensArrastado * (carrosselItensGap + carrosselItemLargura);
 
-    let carroselItemTranslateXAtualizado = -1 * carroselItemTranslateXAjuste;
-    if (carroselItemTranslateXAtual > 0) {
-        carroselItemTranslateXAtualizado = carroselItemTranslateXAjuste;
+    let carrosselItemTranslateXAtualizado = -1 * carrosselItemTranslateXAjuste;
+    if (carrosselItemTranslateXAtual > 0) {
+        carrosselItemTranslateXAtualizado = carrosselItemTranslateXAjuste;
     }
 
-    if (!carroselItemTranslateXAtual) {//se for 0px não faz nada
-        carroselItemTranslateXAtualizado = carroselItemTranslateXAtual;
+    if (!carrosselItemTranslateXAtual) {//se for 0px não faz nada
+        carrosselItemTranslateXAtualizado = carrosselItemTranslateXAtual;
     }
 
-    return carroselItemTranslateXAtualizado;
+    return carrosselItemTranslateXAtualizado;
 }
 
 const buscarTranslateXAtualizadoCarrosselItemFinitoBloco = (
-    carrosselItensGap, carroselItemLargura,
-    carroselItemTranslateXAtual,
+    carrosselItensGap, carrosselItemLargura,
+    carrosselItemTranslateXAtual,
     carrosselLista, carrosselItens,
 ) => {
     const carrosselQuantidadeItensVisiveis = +carrosselLista.closest('.carrossel-customizado-container').css('--carrossel-itens-visiveis');
-    const limiteArrastandoAtingido = !validarLimiteMovimentado(carrosselLista, carrosselItens, carroselItemTranslateXAtual);//ele retorna boolean sendo true 1 false 0
-    const carroselItemTranslateXAjuste = limiteArrastandoAtingido ? 0 : carrosselQuantidadeItensVisiveis * (carrosselItensGap + carroselItemLargura);
+    const limiteArrastandoAtingido = !validarLimiteMovimentado(carrosselLista, carrosselItens, carrosselItemTranslateXAtual);//ele retorna boolean sendo true 1 false 0
+    const carrosselItemTranslateXAjuste = limiteArrastandoAtingido ? 0 : carrosselQuantidadeItensVisiveis * (carrosselItensGap + carrosselItemLargura);
 
-    let carroselItemTranslateXAtualizado = -1 * carroselItemTranslateXAjuste;
-    if (carroselItemTranslateXAtual > 0) {
-        carroselItemTranslateXAtualizado = carroselItemTranslateXAjuste;
+    let carrosselItemTranslateXAtualizado = -1 * carrosselItemTranslateXAjuste;
+    if (carrosselItemTranslateXAtual > 0) {
+        carrosselItemTranslateXAtualizado = carrosselItemTranslateXAjuste;
     }
 
-    if (!carroselItemTranslateXAtual) {//se for 0px não faz nada
-        carroselItemTranslateXAtualizado = carroselItemTranslateXAtual;
-    } else {
+    if (!carrosselItemTranslateXAtual) {//se for 0px não faz nada
+        carrosselItemTranslateXAtualizado = carrosselItemTranslateXAtual;
+    } else {//habilita ou desabilita os botoes proximo/anterior
         const carrosselListaRect = carrosselLista.get(0).getBoundingClientRect();
-        const carroselItemPrimeiroRect = carrosselItens.first().get(0).getBoundingClientRect();
-        const carroselItemUltimoRect = carrosselItens.last().get(0).getBoundingClientRect();
+        const carrosselItemPrimeiroRect = carrosselItens.first().get(0).getBoundingClientRect();
+        const carrosselItemUltimoRect = carrosselItens.last().get(0).getBoundingClientRect();
 
-        if (carroselItemTranslateXAtual > 0 && carrosselListaRect.left >= carroselItemPrimeiroRect.left) {
+        if (
+            carrosselItemTranslateXAtual > 0 &&
+            Math.abs(carrosselItemPrimeiroRect.left) <= carrosselListaRect.right
+        ) {
             carrosselLista.siblings('.carrossel-customizado-btn-anterior:not(.carrossel-customizado-btn-disabled):not(.infinito)').addClass('carrossel-customizado-btn-disabled');
         } else {
             carrosselLista.siblings('.carrossel-customizado-btn-anterior.carrossel-customizado-btn-disabled:not(.infinito)').removeClass('carrossel-customizado-btn-disabled');
         }
 
-        if (carroselItemTranslateXAtual < 0 && carrosselListaRect.right <= carroselItemUltimoRect.right) {
+        if (
+            carrosselItemTranslateXAtual < 0 &&
+            Math.abs(carrosselItemUltimoRect.right - carrosselListaRect.right) <= carrosselListaRect.right
+        ) {
             carrosselLista.siblings('.carrossel-customizado-btn-proximo:not(.carrossel-customizado-btn-disabled):not(.infinito)').addClass('carrossel-customizado-btn-disabled');
         } else {
             carrosselLista.siblings('.carrossel-customizado-btn-proximo.carrossel-customizado-btn-disabled:not(.infinito)').removeClass('carrossel-customizado-btn-disabled');
         }
     }
 
-    return carroselItemTranslateXAtualizado;
+    return carrosselItemTranslateXAtualizado;
 }
 
 const buscarTranslateXAtualizadoCarrosselItemInfinitoBloco = (
-    carrosselItensGap, carroselItemLargura,
-    carroselItemTranslateXAtual, carrosselLista
+    carrosselItensGap, carrosselItemLargura,
+    carrosselItemTranslateXAtual, carrosselLista
 ) => {
     const carrosselQuantidadeItensVisiveis = parseInt(carrosselLista.closest('.carrossel-customizado-container').css('--carrossel-itens-visiveis'));
-    const carroselItemTranslateXAjuste = carrosselQuantidadeItensVisiveis * (carrosselItensGap + carroselItemLargura);
+    const carrosselItemTranslateXAjuste = carrosselQuantidadeItensVisiveis * (carrosselItensGap + carrosselItemLargura);
 
-    let carroselItemTranslateXAtualizado = -1 * carroselItemTranslateXAjuste;
-    if (carroselItemTranslateXAtual > 0) {
-        carroselItemTranslateXAtualizado = carroselItemTranslateXAjuste;
+    let carrosselItemTranslateXAtualizado = -1 * carrosselItemTranslateXAjuste;
+    if (carrosselItemTranslateXAtual > 0) {
+        carrosselItemTranslateXAtualizado = carrosselItemTranslateXAjuste;
     }
 
-    if (!carroselItemTranslateXAtual) {//se for 0px não faz nada
-        carroselItemTranslateXAtualizado = carroselItemTranslateXAtual;
+    if (!carrosselItemTranslateXAtual) {//se for 0px não faz nada
+        carrosselItemTranslateXAtualizado = carrosselItemTranslateXAtual;
     }
 
-    return carroselItemTranslateXAtualizado;
+    return carrosselItemTranslateXAtualizado;
 }
 
-const arrastarCarroselItem = (containerAtual, buscarTranslateXAtualizadoCarrosselItem) => {
+const arrastarCarrosselItem = (containerAtual, buscarTranslateXAtualizadoCarrosselItem) => {
     const carrosselLista = containerAtual.find('.carrossel-customizado-lista');
     const carrosselItens = carrosselLista.find('.carrossel-customizado-item');
 
     const carrosselItensGap = parseInt(containerAtual.css('--carrossel-itens-gap'));
-    const carroselItemLargura = carrosselItens.first().width();
-    const carroselItemTranslateXAtual = +carrosselItens.first().css('transform').match(/matrix\(([^)]+)\)/)[1].split(', ')[4];
+    const carrosselItemLargura = carrosselItens.first().width();
+    const carrosselItemTranslateXAtual = +carrosselItens.first().css('transform').match(/matrix\(([^)]+)\)/)[1].split(', ')[4];
 
-    const carroselItemTranslateXAtualizado = buscarTranslateXAtualizadoCarrosselItem(
-        carrosselItensGap, carroselItemLargura, carroselItemTranslateXAtual,
+    const carrosselItemTranslateXAtualizado = buscarTranslateXAtualizadoCarrosselItem(
+        carrosselItensGap, carrosselItemLargura, carrosselItemTranslateXAtual,
         carrosselLista, carrosselItens,
     );
 
-    carroselItemTranslateXModificado = carroselItemTranslateXAtualizado !== 0;//para validação de redirecionamentos
+    carrosselItemTranslateXModificado = carrosselItemTranslateXAtualizado !== 0;//para validação de redirecionamentos
 
-    const carroselItemAnimacaoMagneticaDuracao = 300;
+    const carrosselItemAnimacaoMagneticaDuracao = 300;
     carrosselItens.css({
-        'transition': ` ${carroselItemAnimacaoMagneticaDuracao}ms ease-in-out`,
-        'transform': `translateX(${carroselItemTranslateXAtualizado}px)`,
+        'transition': ` ${carrosselItemAnimacaoMagneticaDuracao}ms ease-in-out`,
+        'transform': `translateX(${carrosselItemTranslateXAtualizado}px)`,
     });
 
     setTimeout(async () => {
@@ -311,7 +317,6 @@ const arrastarCarroselItem = (containerAtual, buscarTranslateXAtualizadoCarrosse
             }
         });
 
-
         carrosselItens.css('transform', ``);
         containerAtual.find('.carrossel-customizado-btn-proximo.arrastavel').removeClass('arrastando');
         await atualizarCounterCarrosselItem(containerAtual.find('.carrossel-customizado-lista'));
@@ -323,7 +328,7 @@ const arrastarCarroselItem = (containerAtual, buscarTranslateXAtualizadoCarrosse
 
         animandoCarrosselItem = false;
         atualizarAcessibilidadeCarrossel();
-    }, carroselItemAnimacaoMagneticaDuracao);
+    }, carrosselItemAnimacaoMagneticaDuracao);
 
 }
 //funcoes arrastavel fim //
@@ -592,20 +597,20 @@ carrosseisArrastaveisLista.on('mousemove touchmove', (evento) => {
     const carrosselItens = carrosselLista.find('.carrossel-customizado-item');
 
     const posicaoAtualEixoX = (evento.pageX || evento.originalEvent.touches[0].pageX) - carrosselLista.offset().left;
-    const carroselItensTranslateXMovimentado = (posicaoAtualEixoX - posicaoInicialEixoX) * 1;
+    const carrosselItensTranslateXMovimentado = (posicaoAtualEixoX - posicaoInicialEixoX) * 1;
 
     const classesBtnProximo = carrosselLista.siblings('.carrossel-customizado-btn-proximo').attr('class');
     if (['bloco', 'infinito'].every(classe => classesBtnProximo.split(' ').includes(classe))) {
-        atualizarCarrosselInfinitoItensVisiveisConformeDirecaoMovimentada(carrosselLista, carroselItensTranslateXMovimentado, true);
+        atualizarCarrosselInfinitoItensVisiveisConformeDirecaoMovimentada(carrosselLista, carrosselItensTranslateXMovimentado, true);
     } else if (classesBtnProximo.includes('bloco')) {
-        if (!validarLimiteMovimentado(carrosselLista, carrosselItens, carroselItensTranslateXMovimentado)) return;
+        if (!validarLimiteMovimentado(carrosselLista, carrosselItens, carrosselItensTranslateXMovimentado)) return;
     } else if (classesBtnProximo.includes('infinito')) {
-        atualizarCarrosselInfinitoItensVisiveisConformeDirecaoMovimentada(carrosselLista, carroselItensTranslateXMovimentado, false);
+        atualizarCarrosselInfinitoItensVisiveisConformeDirecaoMovimentada(carrosselLista, carrosselItensTranslateXMovimentado, false);
     } else {
-        if (!validarLimiteMovimentado(carrosselLista, carrosselItens, carroselItensTranslateXMovimentado)) return;
+        if (!validarLimiteMovimentado(carrosselLista, carrosselItens, carrosselItensTranslateXMovimentado)) return;
     }
 
-    carrosselLista.find('.carrossel-customizado-item').css({ 'transform': `translateX(${carroselItensTranslateXMovimentado}px)` });
+    carrosselLista.find('.carrossel-customizado-item').css({ 'transform': `translateX(${carrosselItensTranslateXMovimentado}px)` });
 });
 
 $(document).on('mouseup touchend', (evento) => {
@@ -617,18 +622,18 @@ $(document).on('mouseup touchend', (evento) => {
     const classesBtnProximo = containerAtual.find('.carrossel-customizado-btn-proximo').attr('class');
 
     if (['bloco', 'infinito'].every(classe => classesBtnProximo.split(' ').includes(classe))) {
-        arrastarCarroselItem(containerAtual, buscarTranslateXAtualizadoCarrosselItemInfinitoBloco);
+        arrastarCarrosselItem(containerAtual, buscarTranslateXAtualizadoCarrosselItemInfinitoBloco);
     } else if (classesBtnProximo.includes('bloco')) {
-        arrastarCarroselItem(containerAtual, buscarTranslateXAtualizadoCarrosselItemFinitoBloco);
+        arrastarCarrosselItem(containerAtual, buscarTranslateXAtualizadoCarrosselItemFinitoBloco);
     } else if (classesBtnProximo.includes('infinito')) {
-        arrastarCarroselItem(containerAtual, buscarTranslateXAtualizadoCarrosselItemInfinito);
+        arrastarCarrosselItem(containerAtual, buscarTranslateXAtualizadoCarrosselItemInfinito);
     } else {
-        arrastarCarroselItem(containerAtual, buscarTranslateXAtualizadoCarrosselItemFinito);
+        arrastarCarrosselItem(containerAtual, buscarTranslateXAtualizadoCarrosselItemFinito);
     }
 });
 
-$('.carrossel-customizado-item:has(.carrossel-customizado-btn-proximo.arrastavel) *').on('click', (evento) => {
-    if (carroselItemTranslateXModificado) {
+$('.carrossel-customizado-item:has(.carrossel-customizado-btn-proximo.arrastavel) *').on('click', (evento) => {//evitar click quando arrastar um item clicavel
+    if (carrosselItemTranslateXModificado) {
         evento.preventDefault();
     }
 });
