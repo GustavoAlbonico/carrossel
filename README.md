@@ -41,6 +41,8 @@ Utilizando html, css, jquery
     - --carrossel-itens-gap
     - --carrossel-animation-duration
     - --carrossel-botao-navegacao-tamanho
+- Variavel do js que vc pode utilizar:
+    - carrosselItemTranslateXModificado (boolean - se o carrossel foi movimentado arrastando com o mouse)
 
 **Exemplos:**
 
