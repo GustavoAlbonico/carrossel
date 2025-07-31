@@ -2,6 +2,8 @@
 Modelos de carrossel simples criado para utilizar em projetos, (é responsivo e personalizável)
 Utilizando html, css, jquery
 
+<i>Testado nos navegadores: Google Chrome, Mozilla Firefox, Microsoft Edge.</i>
+
 **Modelos:**
 
 - [Carrossel Infinito](https://gustavoalbonico.github.io/carrossel/index.html)
