@@ -311,12 +311,15 @@ const arrastarCarroselItem = (containerAtual, buscarTranslateXAtualizadoCarrosse
             }
         });
 
+
         carrosselItens.css('transform', ``);
         containerAtual.find('.carrossel-customizado-btn-proximo.arrastavel').removeClass('arrastando');
         await atualizarCounterCarrosselItem(containerAtual.find('.carrossel-customizado-lista'));
 
-        const carrosselAnimationDuration = containerAtual.css('--carrossel-animation-duration');
-        carrosselLista.find('.carrossel-customizado-item').css('transition', `${carrosselAnimationDuration} ease-in-out`);
+        setTimeout(() => {
+            const carrosselAnimationDuration = containerAtual.css('--carrossel-animation-duration');
+            carrosselLista.find('.carrossel-customizado-item').css('transition', `${carrosselAnimationDuration} ease-in-out`);
+        }, 0);//por causa do mozilla firefox utilizado settimeout para forçar toda atualização anterior no css antes de acontecer o que esta no settimout
 
         animandoCarrosselItem = false;
         atualizarAcessibilidadeCarrossel();
