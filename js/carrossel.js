@@ -632,7 +632,7 @@ $(document).on('mouseup touchend', (evento) => {
     }
 });
 
-$('.carrossel-customizado-item:has(.carrossel-customizado-btn-proximo.arrastavel) *').on('click', (evento) => {//evitar click quando arrastar um item clicavel
+$('.carrossel-customizado-lista:has(+.carrossel-customizado-btn-proximo.arrastavel) .carrossel-customizado-item *').on('click', (evento) => {//evitar click quando arrastar um item clicavel
     if (carrosselItemTranslateXModificado) {
         evento.preventDefault();
     }
